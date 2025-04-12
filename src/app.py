@@ -2,6 +2,7 @@ from flask import Flask
 from flask_cors import CORS
 from config.config import app_config
 from apis.libros.routes import Libro
+from apis.miembros.routes import Miembro
 
 # Crear una instancia de la aplicación Flask
 app = Flask(__name__)
@@ -30,6 +31,7 @@ if __name__ == "__main__":
     app.config.from_object(app_config["development"])
     # apartado para rutas
     app.register_blueprint(Libro.main, url_prefix="/api/libros")
+    app.register_blueprint(Miembro.main, url_prefix="/api/miembros")
     # Registrar los manejadores de errores
     app.register_error_handler(404, pagina_no_encontrada)
     app.register_error_handler(500, error_servidor)
